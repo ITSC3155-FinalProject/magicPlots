@@ -1,3 +1,4 @@
+# @author Harsh Patel, Andrew Martino, Jessica Cochran, and Mir Mansoor Khan
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -58,7 +59,7 @@ app.layout = html.Div(children=[
               }
               ),
     html.Hr(style={'color': '#7FDBFF'}),
-    html.H3('What about Gold and Silver?', style={'color': '#df1e56', 'font-size': '30px'}),
+    html.H3('What about Investing in Gold and Silver?', style={'color': '#df1e56', 'font-size': '30px'}),
     html.Div("Many investors seek out gold and silver in physical forms with the hopes for their value to rise in the future due to the limited supply of these precious metals. But investing in gold and silver is not as easy as buying a stock of a company. There is the headache of storing and selling physical gold and silver, and gold does not earn dividends like many blue chip stocks."),
     html.Br(),
     html.Div("How does Gold compare against the S&P 500? Gold has underperformed by quite a bit compared to the S&P 500 over this period, with the S&P index generating nearly a 100% in total returns compared to gold, which returned just 42.5% over the same period."),
@@ -106,18 +107,20 @@ app.layout = html.Div(children=[
     html.H3('Instructions on how to use the above chart:', style={'color': '#df1e56'}),
     html.Div("1. Select a sector of companies that you are interested in.", style={'margin-left': '10%', 'margin-right': '10%'}),
     html.Br(),
-    html.Div("2. The y-axis represents the EBITDA or how good the company is towards generating profits from its assets. Higher is better.", style={'margin-left': '10%', 'margin-right': '10%'}),
+    html.Div("2. The bubble/circle represents the individual stocks of different companies in the selected sector.", style={'margin-left': '10%', 'margin-right': '10%'}),
     html.Br(),
-    html.Div("3. The x-axis represents the Price-to-earnings ratio that represents if stock price is a bargain compared to its earnings. Lower is better.", style={'margin-left': '10%', 'margin-right': '10%'}),
+    html.Div("3. The y-axis represents the EBITDA or how good the company is towards generating profits from its assets. Higher is better.", style={'margin-left': '10%', 'margin-right': '10%'}),
     html.Br(),
-    html.Div("4. The size of the bubble/circle represents the market capitalization of the company. Or how big the company is.", style={'margin-left': '10%', 'margin-right': '10%'}),
+    html.Div("4. The x-axis represents the Price-to-earnings ratio that represents if stock price is a bargain compared to its earnings. Lower is better.", style={'margin-left': '10%', 'margin-right': '10%'}),
     html.Br(),
-    html.Div("5. And the color on the bubble represents dividend yield.", style={'margin-left': '10%', 'margin-right': '10%'}),
+    html.Div("5. The size of the bubble/circle represents the market capitalization of the company. Or how big the company is.", style={'margin-left': '10%', 'margin-right': '10%'}),
     html.Br(),
-    html.Div("6. Use a combination of these factors to determine your preferred stock.", style={'margin-left': '10%', 'margin-right': '10%'}),
+    html.Div("6. And the color on the bubble represents dividend yield. Dividend yield is percent of profits paid-out by company inrelation to stock price. Higher is better.", style={'margin-left': '10%', 'margin-right': '10%'}),
+    html.Br(),
+    html.Div("7. Use a combination of these factors to determine your preferred stock.", style={'margin-left': '10%', 'margin-right': '10%'}),
     html.Br(),
     html.Hr(style={'color': '#7FDBFF'}),
-    html.Div('Disclaimer: ', style={'textAlign': 'center', 'font-size': 10}),
+    html.Div('Disclaimer: Our content is intended to be used and must be used for information and education purposes only. It is very important to do your own analysis before making any investment based on your own personal circumstances. You should take independent financial advice from a professional in connection with, or independently research and verify, any information that you find on our Website and wish to rely upon, whether for the purpose of making an investment decision or otherwise. The data provided on this website is not up-to-date with current stock market.', style={'textAlign': 'center', 'font-size': 10, 'margin-left': '10%', 'margin-right': '10%'}),
     html.Br(),
     html.Div('Created by: Andrew Martino, Harsh Patel, Jessica Cochran, and Mir Mansoor Khan (Group-23)', style={'textAlign': 'center', 'font-weight': 'bold'}),
     html.Br(),
@@ -141,7 +144,7 @@ def update_figure(selected_sector):
                                               y=new_df['EBITDA'],
                                               text=new_df['Name'], mode='markers',
                                               marker=dict(size=new_df['Market Cap'] / 10000000000,
-                                                          color=new_df['Dividend Yield'], showscale=True))]
+                                                          color=new_df['Dividend Yield'], showscale=True, colorbar=dict(title="Dividend Yield %")))]
 
     layout = go.Layout(title='S&P 500 Companies in ' + selected_sector, xaxis={'title': 'Price/Earnings'},
                                                                             yaxis={'title': 'EBITDA'})
